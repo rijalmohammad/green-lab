@@ -11,6 +11,8 @@ Benchmark functions are considered as the subjects in the experiment. Six benchm
 [Android Runner](https://github.com/S2-group/android-runner/tree/master/AndroidRunner) is used to orchestrate the experiment. [R Studio](https://posit.co/) is used for data analysis. 
 
 ## Structure of The Project
+The basic structure of this project followed Android Runner repository project structure with several addition: 
+
 - subject: contains every benchmark functions that are converted to Wasm and embedded to HTML
 - source: contains original source code of benchmark functions
 - data: contains data generated from the experiment
