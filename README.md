@@ -20,9 +20,9 @@ The basic structure of this project followed Android Runner repository project s
 - scripts: contains R scripts that are used in data analysis part
 
 ## Dependencies
-- [Android Runner] (https://github.com/S2-group/android-runner/tree/master/AndroidRunner)
-- [R Studio] (https://posit.co/download/rstudio-desktop/)
-- [Python3] (Web Server)(https://www.python.org/downloads/)
+- [Android Runner](https://github.com/S2-group/android-runner/tree/master/AndroidRunner)
+- [R Studio](https://posit.co/download/rstudio-desktop/)
+- [Python3](Web Server)(https://www.python.org/downloads/)
 - Compiler: [Wasm-Pack](https://github.com/rustwasm/wasm-pack) (for Rust), [Emscripten](https://emscripten.org/docs/getting_started/downloads.html) (for C, C++), [Go Compiler](https://pkg.go.dev/cmd/compile) (Go)
 
 ## Getting Started
