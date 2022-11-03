@@ -1,0 +1,5 @@
+             Df Sum Sq Mean Sq F value   Pr(>F)    
+language      3   22.0   7.327   7.636 5.39e-05 ***
+Residuals   476  456.7   0.960                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

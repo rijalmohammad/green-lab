@@ -1,0 +1,12 @@
+
+	Welch Two Sample t-test
+
+data:  norm_memory by browser
+t = -3.3363, df = 476.3, p-value = 0.0009155
+alternative hypothesis: true difference in means between group chrome and group firefox is not equal to 0
+95 percent confidence interval:
+ -0.4787492 -0.1238418
+sample estimates:
+ mean in group chrome mean in group firefox 
+           -0.1506477             0.1506477 
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Binary Trees</title>
+  </head>
+  <body>
+    <div id="status"></div>
+    <script src="wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+
+      function xml_http_post(url, data, callback) {
+        var req = new XMLHttpRequest();
+        req.open("POST", url, true);
+        req.send(data);
+      }
+
+      function calcaulate_performance() {
+        var plt =
+          window.performance.timing.domComplete -
+          window.performance.timing.requestStart;
+        var local_server_ip = "http://192.168.0.111:8000";
+        console.log("Calculated PLT: " + plt);
+        xml_http_post(local_server_ip, plt, null);
+      }
+
+      try {
+        WebAssembly.instantiateStreaming(
+          fetch("go_binarytrees.wasm"),
+          go.importObject
+        ).then((result) => {
+          go.run(result.instance);
+          document.getElementById("status").innerHTML = "Finished";
+          calcaulate_performance();
+        });
+      } catch (error) {
+        console.log({
+          error,
+        });
+      }
+    </script>
+  </body>
+</html>

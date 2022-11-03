@@ -1,0 +1,51 @@
+{
+  "type": "web",
+  "devices": {
+    "nexus6WiFi": {}
+  },
+  "repetitions": 10,
+  "randomization": true,
+  "clear_cache": true,
+  "run_stopping_condition" : {"post_request" : {"server_port" : 8000}},
+  "duration": 180000,
+  "browsers": [
+    "chrome",
+    "firefox"
+  ],
+  "paths": [
+    "http://192.168.0.101:8000/c/spectral_norm.html",
+    "http://192.168.0.101:8000/cpp/fannkuch_redux.html",
+    "http://192.168.0.101:8000/rust/n_body.html",
+    "http://192.168.0.101:8000/go/mandelbrot.html"
+  ],
+  "profilers": {
+    "trepn": {
+      "subject_aggregation": "default",
+      "experiment_aggregation": "Scripts/aggregate_trepn.py",
+      "preferences": {
+        "profiling_interval": 100,
+        "battery_power_source_selection": "Estimate Power Consumption"
+      },
+      "data_points": [
+        "battery_power"
+      ]
+    }
+  },
+  "scripts": {
+    "before_experiment": "Scripts/before_experiment.py",
+    "before_run": "Scripts/before_run.py",
+    "after_launch": "Scripts/after_launch.py",
+    "interaction": [
+      {
+        "type": "python3",
+        "path": "Scripts/interaction.py",
+        "timeout": 120000,
+        "logcat_regex": "some keyword"
+      }
+    ],
+    "before_close": "Scripts/before_close.py",
+    "after_run": "Scripts/after_run.py",
+    "after_experiment": "Scripts/after_experiment.py"
+  },
+  "time_between_run": 60000
+}

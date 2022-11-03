@@ -15,9 +15,9 @@ The basic structure of this project followed Android Runner repository project s
 
 - subject: contains every benchmark functions that are converted to Wasm and embedded to HTML
 - source: contains original source code of benchmark functions
-- data: contains data generated from the experiment
+- data: contains data generated from the experiment, it includes raw, aggregated, and analyzed. 
 - config: contains Android Runner config that are used in the experiment
-- scripts: contains R scripts that are used in data analysis part
+- scripts: contains R scripts that are used in data analysis part, including transformation (aggregation, filtering noise) and analysis (statistical test)
 
 ## Dependencies
 - [Android Runner](https://github.com/S2-group/android-runner/tree/master/AndroidRunner)

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Binary Trees</title>
+  </head>
+  <body>
+    <div id="status"></div>
+    <script type="text/javascript">
+      function xml_http_post(url, data, callback) {
+        var req = new XMLHttpRequest();
+        req.open("POST", url, true);
+        req.send(data);
+      }
+
+      function calcaulate_performance() {
+        var plt =
+          window.performance.timing.domComplete -
+          window.performance.timing.requestStart;
+        var local_server_ip = "http://192.168.0.111:8000";
+        console.log("Calculated PLT: " + plt);
+        xml_http_post(local_server_ip, plt, null);
+      }
+
+      var statusElement = document.getElementById("status");
+
+      var Module = {
+        setStatus: function (text) {
+          if (!Module.setStatus.last)
+            Module.setStatus.last = { time: Date.now(), text: "" };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return;
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+
+          if (!m && !text) {
+            statusElement.innerHTML = "Finished";
+            console.log("OK");
+            calcaulate_performance();
+          } else {
+            statusElement.innerHTML = text;
+          }
+        },
+      };
+    </script>
+    <script src="binary-trees.js"></script>
+  </body>
+</html>

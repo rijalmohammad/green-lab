@@ -1,0 +1,7 @@
+                  Df Sum Sq Mean Sq F value Pr(>F)    
+language           3  104.8   34.93  44.326 <2e-16 ***
+browser            1    0.8    0.78   0.993  0.320    
+language:browser   3    1.2    0.41   0.516  0.671    
+Residuals        472  371.9    0.79                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

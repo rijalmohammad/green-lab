@@ -1,0 +1,12 @@
+
+	Welch Two Sample t-test
+
+data:  norm_cpu by browser
+t = 5.0117, df = 473.76, p-value = 7.633e-07
+alternative hypothesis: true difference in means between group chrome and group firefox is not equal to 0
+95 percent confidence interval:
+ 0.2723374 0.6236259
+sample estimates:
+ mean in group chrome mean in group firefox 
+            0.2230579            -0.2249238 
+

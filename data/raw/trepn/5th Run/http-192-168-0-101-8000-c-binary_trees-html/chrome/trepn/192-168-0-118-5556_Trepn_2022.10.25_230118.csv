@@ -1,0 +1,4 @@
+Time  [ms],Memory Usage [KB],Time  [ms],Battery Power* [uW] (Raw),Battery Power* [uW] (Delta),Time  [ms],CPU Load [%]
+10,2711336,18,4418552,2908180,24,57
+110,2708284,113,4099803,2589431,116,56
+211,2713008,214,4764569,3254197,,
