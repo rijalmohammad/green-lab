@@ -112,3 +112,5 @@ AndroidRunner/Plugins/monsoon/script/monsoon_config.csv
 
 # ignore any ouputs of experiments
 output/
+
+.DS_Store
