@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(svglite)
 library(bestNormalize)
+library(effectsize)
 
 memcpu_data_csv_path = './memcpu_data.csv'
 memcpu_data = memcpu_data_csv_path %>%
@@ -147,12 +148,15 @@ memory_sum_aov_language = summary(res.aov_language_memory)
 memory_sum_aov_language
 capture.output(memory_sum_aov_language, file = "./memory_results/language/anova_one_way_language_memory.txt")
 
-# The output includes the columns F value and Pr(>F) corresponding to the p-value of the test.
-# Interpret the result of one-way ANOVA tests - As the p-value is less than the significance level 0.05, 
-# we can conclude that there are significant differences between the groups highlighted with “*" in the model summary.
+#tukey test
+tukeyHSD_memory_language = TukeyHSD(res.aov_language_memory)
+tukeyHSD_memory_language
+capture.output(tukeyHSD_memory_language, file = "./memory_results/language/tukeyHSD_memory_language.txt")
 
-# tukeyHSD_language = TukeyHSD(res.aov_language)
-# tukeyHSD_language
+#effect size
+eta_squared_memory_language = eta_squared(res.aov_language_memory)
+eta_squared_memory_language
+capture.output(eta_squared_memory_language, file = "./memory_results/eta_squared_memory_language.txt")
 
 #BY_BROWSER - RQ2
 memory_by_browser = memory_data %>%
@@ -257,3 +261,4 @@ ggsave(
   file="./memory_results/density_curve_memory_language_browser.png",
   plot=density_curve_memory_language_browser,
 )
+

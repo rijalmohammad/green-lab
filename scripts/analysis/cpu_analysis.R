@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(svglite)
 library(bestNormalize)
+library(effectsize)
 
 memcpu_data_csv_path = './memcpu_data.csv'
 memcpu_data = memcpu_data_csv_path %>%
@@ -151,12 +152,14 @@ cpu_sum_aov_language = summary(res.aov_language_cpu)
 cpu_sum_aov_language
 capture.output(cpu_sum_aov_language, file = "./cpu_results/language/anova_one_way_language_cpu.txt")
 
-# The output includes the columns F value and Pr(>F) corresponding to the p-value of the test.
-# Interpret the result of one-way ANOVA tests - As the p-value is less than the significance level 0.05, 
-# we can conclude that there are significant differences between the groups highlighted with “*" in the model summary.
+#tukey test
+tukeyHSD_cpu_language = TukeyHSD(res.aov_language_cpu)
+tukeyHSD_cpu_language
+capture.output(tukeyHSD_cpu_language, file = "./cpu_results/language/tukeyHSD_cpu_language.txt")
 
-# tukeyHSD_language = TukeyHSD(res.aov_language)
-# tukeyHSD_language
+eta_squared_cpu_language = eta_squared(res.aov_language_cpu)
+eta_squared_cpu_language
+capture.output(eta_squared_cpu_language, file = "./cpu_results/eta_squared_cpu_language.txt")
 
 #BY_BROWSER - RQ2
 cpu_by_browser = cpu_data %>%
@@ -222,6 +225,11 @@ cpu_two_way_test = summary(res.aov_two_way_cpu)
 cpu_two_way_test
 capture.output(cpu_two_way_test, file = "./cpu_results/anova_two_way_test.txt")
 
+#effect size
+# eta_squared_cpu = eta_squared(res.aov_two_way_cpu)
+# eta_squared_cpu
+# capture.output(eta_squared_cpu, file = "./cpu_results/eta_squared_cpu.txt")
+
 #language_browser statistics
 cpu_data$language_browser = paste(cpu_data$language, " and ", cpu_data$browser)
 
@@ -261,3 +269,4 @@ ggsave(
   file="./cpu_results/density_curve_cpu_language_browser.png",
   plot=density_curve_cpu_language_browser,
 )
+

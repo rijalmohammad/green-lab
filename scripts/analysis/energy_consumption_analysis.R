@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(svglite)
 library(bestNormalize)
+library(effectsize)
 
 energy_data_csv_path = './energy_consumption_data.csv'
 energy_data = energy_data_csv_path %>%
@@ -148,12 +149,15 @@ energy_sum_aov_language = summary(res.aov_language_energy)
 energy_sum_aov_language
 capture.output(energy_sum_aov_language, file = "./energy_results/language/anova_one_way_language_energy.txt")
 
-# The output includes the columns F value and Pr(>F) corresponding to the p-value of the test.
-# Interpret the result of one-way ANOVA tests - As the p-value is less than the significance level 0.05, 
-# we can conclude that there are significant differences between the groups highlighted with “*" in the model summary.
+#tukey test
+tukeyHSD_energy_language = TukeyHSD(res.aov_language_energy)
+tukeyHSD_energy_language
+capture.output(tukeyHSD_energy_language, file = "./energy_results/language/tukeyHSD_energy_language.txt")
 
-# tukeyHSD_language = TukeyHSD(res.aov_language_energy)
-# tukeyHSD_language
+#effect size
+eta_squared_energy_language = eta_squared(res.aov_language_energy)
+eta_squared_energy_language
+capture.output(eta_squared_energy_language, file = "./energy_results/eta_squared_energy_language.txt")
 
 #BY_BROWSER - RQ2
 energy_by_browser = energy_data %>%
@@ -219,9 +223,6 @@ energy_two_way_test = summary(res.aov_two_way_energy)
 energy_two_way_test
 capture.output(energy_two_way_test, file = "./energy_results/anova_two_way_test.txt")
 
-# tukeyHSD_two_way = TukeyHSD(res.aov_two_way_energy)
-# tukeyHSD_two_way
-
 energy_data$language_browser = paste(energy_data$language, " and ", energy_data$browser)
 
 energy_by_language_browser = energy_data %>%
@@ -254,7 +255,10 @@ density_curve_energy_language_browser = ggplot(energy_data, aes(x=avg_energy, co
   ) +
   labs(title="Energy Consumption (Joule) for language and browser", x="Energy Consumption (Joule)", y="Density")
 
+density_curve_energy_language_browser
+
 ggsave(
   file="./energy_results/density_curve_energy_language_browser.png",
   plot=density_curve_energy_language_browser,
 )
+

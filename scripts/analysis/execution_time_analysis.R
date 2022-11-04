@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(svglite)
 library(bestNormalize)
+library(effectsize)
 
 execution_time_data_csv_path = './execution_time_data.csv'
 execution_time_data = execution_time_data_csv_path %>%
@@ -148,12 +149,15 @@ execution_time_sum_aov_language = summary(res.aov_language_execution_time)
 execution_time_sum_aov_language
 capture.output(execution_time_sum_aov_language, file = "./execution_time_results/language/anova_one_way_language_execution_time.txt")
 
-# The output includes the columns F value and Pr(>F) corresponding to the p-value of the test.
-# Interpret the result of one-way ANOVA tests - As the p-value is less than the significance level 0.05, 
-# we can conclude that there are significant differences between the groups highlighted with “*" in the model summary.
+#tukey test
+tukeyHSD_execution_time_language = TukeyHSD(res.aov_language_execution_time)
+tukeyHSD_execution_time_language
+capture.output(tukeyHSD_execution_time_language, file = "./execution_time_results/language/tukeyHSD_execution_time_language.txt")
 
-# tukeyHSD_language = TukeyHSD(res.aov_language)
-# tukeyHSD_language
+#effect size
+eta_squared_execution_time_language = eta_squared(res.aov_language_execution_time)
+eta_squared_execution_time_language
+capture.output(eta_squared_execution_time_language, file = "./execution_time_results/eta_squared_execution_time_language.txt")
 
 #BY_BROWSER - RQ2
 execution_time_browser = execution_time_data %>%
@@ -213,13 +217,11 @@ res.t_test_browser_execution_time = t.test(execution_time_browser, data = execut
 res.t_test_browser_execution_time
 capture.output(res.t_test_browser_execution_time, file = "./execution_time_results/browser/t_test_browser_execution_time.txt")
 
-
 #two-way-anova
 res.aov_two_way_execution_time <- aov(norm_execution_time ~ language * browser, data = execution_time_data)
 execution_time_two_way_test = summary(res.aov_two_way_execution_time)
 execution_time_two_way_test
 capture.output(execution_time_two_way_test, file = "./execution_time_results/anova_two_way_test.txt")
-
 
 #language_browser statistics
 execution_time_data$language_browser = paste(execution_time_data$language, " and ", execution_time_data$browser)
@@ -260,3 +262,4 @@ ggsave(
   file="./execution_time_results/density_curve_execution_time_language_browser.png",
   plot=density_curve_execution_time_language_browser,
 )
+
